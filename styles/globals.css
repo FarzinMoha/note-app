@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root{
+    --primary: #3F4041;
+    --secondry : #FFD700;
+    --secondryHover : #fbde38;
+}
