@@ -6,7 +6,7 @@ const DropDown: React.FC<
 > = ({ items, rootClass,selected ,...props }) => {
   
   return (
-    <div className={`min-w-[150px] relative cursor-pointer h-[40px] mb-[16px] ${rootClass}`}>
+    <div className={`min-w-[120px] relative cursor-pointer h-[40px] mb-[16px] ${rootClass}`}>
       <span className="absolute -top-7 left-0 pl-2 text-secondry h-[30px] text-lg">Category</span>
       <select
         defaultValue={selected}

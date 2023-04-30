@@ -14,7 +14,7 @@ type createAndEditProps = {
 const CreateAndEditText = ({values}:createAndEditProps) => {
   const {state , setState , submitHandler , onChangeHandler} = values
     const [categories , setCategories] = useState<any>(null)
-    const [category , setCategory] = useState('')
+    const [category , setCategory] = useState('new category')
     const router = useRouter()
 
 
@@ -27,10 +27,9 @@ const CreateAndEditText = ({values}:createAndEditProps) => {
       const fetchCategory = async () => {
         const response = await getTextList()
         const category = response.map(item=>item.category)
-        category.push('new category')
+        category.unshift('new category')
         const categories = Array.from(new Set(category).values())
         setCategories(categories) 
-        setCategory(categories[0])
       }
 
       if(state.category.length > 0){
@@ -39,17 +38,16 @@ const CreateAndEditText = ({values}:createAndEditProps) => {
       fetchCategory()
     },[])
 
-    
   return (
     <form onSubmit={submitHandler} className='w-full h-full sm:max-w-[900px] min-h-[600px] bg-bgBlackTransparent rounded-md px-3 py-3'>
       <div className='w-full sm:w-[80%] sm:max-w-[800px] mx-auto h-[150px]  px-2 flex justify-center items-center'>
-        {category=== 'new category' && <Input value={state.category} name='category' label='New Catgory' onChange={onChangeHandler}/>}
+        {category=== 'new category' && <Input error={!state.category.length? 'This field is required!' : ''} value={state.category} name='category' label='New Catgory' onChange={onChangeHandler}/>}
         <DropDown rootClass={category !== 'new category' ? 'w-full' : 'ml-2'} selected={category} items={categories} onChange={drompDownChangeHandler}/>
       </div>
       <div className='w-full flex flex-col px-2 justify-evenly items-center'>
-        <Text name='text' value={state.text} label='Text' rootClass='w-full sm:w-[80%] sm:max-w-[800px]' onChange={onChangeHandler}/>
-        <Button type='submit'>Save</Button>
-        <Button onClick={()=>router.push('/')} rootClass='bg-neutral-950 text-secondry'>Cancel</Button>
+        <Text error={!state.text.length? 'This field is required!' : ''} name='text' value={state.text} label='Text' rootClass='w-full sm:w-[80%] sm:max-w-[800px]' onChange={onChangeHandler}/>
+        <Button disabled={!state.category.length || !state.text.length} type='submit'>Save</Button>
+        <Button onClick={()=>router.replace('/')} rootClass=' text-secondry' bgSecondColor>Cancel</Button>
       </div>
     </form>
   )

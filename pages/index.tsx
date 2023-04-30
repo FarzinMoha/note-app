@@ -12,7 +12,17 @@ type homeProps = {
   categories : string[]
 }
 
+// const filteredData = list?.filter(
+//   (item: any) =>
+//     item._id?.toLowerCase().includes(filterItem.id?.toLowerCase()) &&
+//     item?.webhookUrl?.toLowerCase().includes(filterItem?.url?.toLowerCase())
+// );
+
 const Home = ({textList , categories}:homeProps) => {
+  const [searchItem , setSearchItem] = useState('')
+  const [searchCategoryItem , setSearchCategoryItem] = useState('')
+  const filteredTextList = textList?.filter(item=> item?.text?.toLowerCase().includes(searchItem.toLowerCase()) &&
+  item?.category?.toLowerCase().includes(searchCategoryItem?.toLowerCase()))
   const [changeStatus , setChangeStatus] = useState(false)
   const [deletText , setDeletText] = useState(false)
   const [state , setState] = useState({id:'',category:'',text:'',status:false , date:''})
@@ -39,6 +49,15 @@ const Home = ({textList , categories}:homeProps) => {
         console.log(error)
       }
   },[deletText])
+
+  const searchHandler = useCallback((e:any)=>{
+    setSearchItem(e.target.value)
+  },[searchItem])
+
+  const dropDownChangeHandler = useCallback((e:any)=>{
+    const value = e.target.value === 'All' ? '' : e.target.value
+    setSearchCategoryItem(value)
+  },[searchCategoryItem])
   
   return (
     <main className="w-screen h-screen p-4 flex justify-center items-center ">
@@ -51,30 +70,30 @@ const Home = ({textList , categories}:homeProps) => {
               {changeStatus && !deletText &&
               <>                
                 <Button onClick={statusHandler} rootClass="mx-1">Yes</Button>
-                <Button onClick={()=>setChangeStatus(false)} rootClass="mx-1 bg-neutral-950 text-secondry">No</Button>
+                <Button onClick={()=>setChangeStatus(false)} rootClass="mx-1 text-secondry" bgSecondColor>No</Button>
                 </>
               }
               {deletText && !changeStatus &&
               <>                
                 <Button onClick={deleteHandler} rootClass="mx-1">Yes</Button>
-                <Button onClick={()=>setDeletText(false)} rootClass="mx-1 bg-neutral-950 text-secondry">No</Button>
+                <Button onClick={()=>setDeletText(false)} rootClass="mx-1 text-secondry" bgSecondColor>No</Button>
                 </>
               }
             </div>
         </div>
       </div>
-      <section className="w-full relative lg:w-[85%]  h-full sm:max-w-[1100px] max-h-[700px] bg-bgBlackTransparent  shadow-3xl   rounded-md px-3 py-3 overflow-scroll">
+      <section className="w-full relative lg:w-[85%]  h-full sm:max-w-[1150px] max-h-[700px] bg-bgBlackTransparent  shadow-3xl   rounded-md px-3 py-3 overflow-scroll">
         <div className="w-full min-h-[600px] flex flex-col  justify-start items-center">
           <div className="w-full flex flex-col lg:flex-row justify-evenly items-start lg:items-center">
-          <h1 className="font-extrabold text-secondry text-5xl mb-5">All notes</h1>
+          <h1 className="font-extrabold whitespace-nowrap w-fit text-secondry text-5xl mb-5 mr-1">All notes</h1>
           <div className="w-full lg:w-fit flex justify-start items-center">
-          <Input type="search" placeholder="search"/>
-          <DropDown items={categories} rootClass="mb-5 ml-4" />
+          <Input type="search" placeholder="search" name="search" value={searchItem} onChange={searchHandler}/>
+          <DropDown items={categories} rootClass="mb-5 ml-4" onChange={dropDownChangeHandler} />
           </div>
           </div>
-          {textList.map(item=> <Note key={item.id} note={item} setChangeStatus={setChangeStatus} setState={setState} setDeletText={setDeletText}/> )}
+          {filteredTextList.map(item=> <Note key={item.id} note={item} setChangeStatus={setChangeStatus} setState={setState} setDeletText={setDeletText}/> )}
         </div>
-        <Button onClick={()=>router.push('/add-new-text')} rootClass="absolute lg:fixed absolute top-0 right-[15px] lg:top-[85%] w-[65px] h-[65px] sm:w-[65px] sm:h-[65px] rounded-full  flex justify-center items-center text-2xl">+</Button>
+        <button onClick={()=>router.push('/add-new-text')} className="absolute lg:fixed border text-primary bg-secondry border-secondry duration-200 hover:bg-transparent hover:border hover:border-secondry hover:text-secondry top-[10px] right-[15px] lg:top-[20px] w-[65px] h-[65px] rounded-full  flex justify-center items-center text-2xl">+</button>
       </section>
     </main>
   );

@@ -3,6 +3,7 @@ import { ReactNode, SetStateAction } from "react";
 export type btnProps = {
   children: ReactNode;
   rootClass?: string;
+  bgSecondColor?:boolean
 };
 export type inputProps = {
   rootClass?: string;
