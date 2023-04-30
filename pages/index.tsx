@@ -12,17 +12,10 @@ type homeProps = {
   categories : string[]
 }
 
-// const filteredData = list?.filter(
-//   (item: any) =>
-//     item._id?.toLowerCase().includes(filterItem.id?.toLowerCase()) &&
-//     item?.webhookUrl?.toLowerCase().includes(filterItem?.url?.toLowerCase())
-// );
-
 const Home = ({textList , categories}:homeProps) => {
   const [searchItem , setSearchItem] = useState('')
   const [searchCategoryItem , setSearchCategoryItem] = useState('')
-  const filteredTextList = textList?.filter(item=> item?.text?.toLowerCase().includes(searchItem.toLowerCase()) &&
-  item?.category?.toLowerCase().includes(searchCategoryItem?.toLowerCase()))
+  const filteredTextList = textList?.filter(item=> item?.text?.toLowerCase().includes(searchItem.toLowerCase()) && item?.category?.toLowerCase().includes(searchCategoryItem?.toLowerCase()))
   const [changeStatus , setChangeStatus] = useState(false)
   const [deletText , setDeletText] = useState(false)
   const [state , setState] = useState({id:'',category:'',text:'',status:false , date:''})
@@ -39,6 +32,7 @@ const Home = ({textList , categories}:homeProps) => {
       }
   },[changeStatus])
 
+
   const deleteHandler = useCallback(async () => {
     setDeletText(true)
       try {
@@ -50,9 +44,11 @@ const Home = ({textList , categories}:homeProps) => {
       }
   },[deletText])
 
+
   const searchHandler = useCallback((e:any)=>{
     setSearchItem(e.target.value)
   },[searchItem])
+
 
   const dropDownChangeHandler = useCallback((e:any)=>{
     const value = e.target.value === 'All' ? '' : e.target.value

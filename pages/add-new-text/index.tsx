@@ -10,6 +10,8 @@ const AddNewText = () => {
 const isoString = date.toISOString();
   const [state , setState] = useState({ id: '', category: '', text: '', status: false,date:isoString })
   const router = useRouter()
+
+  
   const submitHandler = useCallback(async (e:any)=>{
     e.preventDefault()
     try {
@@ -24,6 +26,8 @@ const isoString = date.toISOString();
     const {name , value} = e.target
     setState({...state , [name]:value})
   },[state])
+
+
   const value = {state , setState , submitHandler , onChangeHandler}
   return (
     <main className='w-screen min-h-screen flex justify-center items-center px-3 py-5'>
