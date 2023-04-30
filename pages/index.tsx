@@ -12,7 +12,7 @@ type homeProps = {
 }
 
 const Home = ({textList}:homeProps) => {
-  const [changeStatus , setChangeStatus] = useState(true)
+  const [changeStatus , setChangeStatus] = useState(false)
   const itemList = ["gym", "walking", "swim", "play", "football"];
   const router = useRouter()
   return (
