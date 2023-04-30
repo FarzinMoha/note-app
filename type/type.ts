@@ -12,4 +12,12 @@ export type inputProps = {
 
 export type dropDownProps = {
     items:any[]
+    rootClass?:string
+}
+
+export type textListResponse = {
+    id:string
+    category:string
+    text:string
+    status:boolean
 }

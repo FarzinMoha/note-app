@@ -1,0 +1,28 @@
+{
+    "texts":[
+        {
+            "id":"1",
+            "category":"play1",
+            "text":"1ssd dsf sdf asd asd asd asf ",
+            "status":false
+        },
+        {
+            "id":"2",
+            "category":"play2",
+            "text":"2ssd dsf sdf asd asd asd asf ",
+            "status":false
+        },
+        {
+            "id":"3",
+            "category":"play3",
+            "text":"3ssd dsf sdf asd asd asd asf ",
+            "status":false
+        },
+        {
+            "id":"4",
+            "category":"play4",
+            "text":"4ssd dsf sdf asd asd asd asf ",
+            "status":false
+        }
+    ]
+}
