@@ -31,7 +31,6 @@ export type CreateAndEditText = {
   onChangeHandler:React.ChangeEventHandler<HTMLInputElement> & React.ChangeEventHandler<HTMLTextAreaElement>
 };
 
-// , submitHandler , onChangeHandler
 export type textEditResponse = {
   id:string;
   text:{
