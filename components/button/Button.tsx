@@ -8,7 +8,7 @@ const Button: React.FC<ButtonHTMLAttributes<HTMLButtonElement> & btnProps> = ({
 }) => {
   return (
     <button
-      className={`w-full sm:w-[300px] p-4 bg-secondry border text-primary border-transparent rounded-xl duration-200 hover:bg-transparent hover:border hover:border-secondry hover:text-secondry my-4 ${rootClass}`}
+      className={`w-full sm:w-[500px] p-4 bg-secondry border text-primary border-transparent rounded-xl duration-200 hover:bg-transparent hover:border hover:border-secondry hover:text-secondry my-4 ${rootClass}`}
       {...props}
     >
       {children}
