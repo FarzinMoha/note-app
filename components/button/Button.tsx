@@ -1,7 +1,7 @@
 import { btnProps } from "@/type/type";
 import React, { ButtonHTMLAttributes } from "react";
 
-const Button: React.FC<ButtonHTMLAttributes<HTMLButtonElement> & btnProps> = ({
+const Button: React.FC<ButtonHTMLAttributes<HTMLButtonElement> & btnProps & any> = ({
   children,
   rootClass,
   ...props

@@ -13,6 +13,7 @@ export type inputProps = {
 export type dropDownProps = {
   items: any[];
   rootClass?: string;
+  selected?: string;
 };
 
 export type textListResponse = {
@@ -29,3 +30,12 @@ export type CreateAndEditText = {
 };
 
 // , submitHandler , onChangeHandler
+export type textEditResponse = {
+  id:string;
+  text:{
+    id: string;
+    category: string;
+    text: string;
+    status: boolean;
+  }
+};

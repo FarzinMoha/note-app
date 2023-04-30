@@ -8,6 +8,10 @@ import { useRouter } from 'next/router';
 const AddNewText = () => {
   const [state , setState] = useState({ id: '', category: '', text: '', status: false })
   const router = useRouter()
+  const today = new Date()
+  const day = today.setUTCMonth
+  console.log(day)
+
   const submitHandler = useCallback(async (e:any)=>{
     e.preventDefault()
     try {
@@ -18,6 +22,7 @@ const AddNewText = () => {
       console.log(error)
     }
   },[state])
+
   const onChangeHandler = useCallback((e:any)=>{
     const {name , value} = e.target
     setState({...state , [name]:value})
