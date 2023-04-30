@@ -5,7 +5,8 @@ const Home = () => {
   return (
   <main className="w-screen min-h-screen px-4 bg-primary">
     <Button>sadsd</Button>
-    <Input/>
+    <Input error="sadsd" label="sdsds"/>
+    
   </main>
   );
 }
