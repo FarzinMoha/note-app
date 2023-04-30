@@ -9,3 +9,7 @@ export type inputProps = {
     label?:string
     error?:string
 }
+
+export type dropDownProps = {
+    items:any[]
+}
