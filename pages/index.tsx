@@ -15,7 +15,7 @@ type homeProps = {
 const Home = ({textList , categories}:homeProps) => {
   const [changeStatus , setChangeStatus] = useState(false)
   const [deletText , setDeletText] = useState(false)
-  const [state , setState] = useState({id:'',category:'',text:'',status:false})
+  const [state , setState] = useState({id:'',category:'',text:'',status:false , date:''})
   const router = useRouter()
 
   const statusHandler = useCallback(async () => {
@@ -47,17 +47,17 @@ const Home = ({textList , categories}:homeProps) => {
             <div className="w-full h-[50px] text-center">
               <p className="text-white text-xl">Are you sure ?</p>
             </div>
-            <div className="w-full h-[150px] flex justify-between items-center px-5">
+            <div className="w-full h-[150px] flex  justify-between items-center px-5">
               {changeStatus && !deletText &&
               <>                
                 <Button onClick={statusHandler} rootClass="mx-1">Yes</Button>
-                <Button onClick={()=>setChangeStatus(false)} rootClass="mx-1 bg-black text-secondry">No</Button>
+                <Button onClick={()=>setChangeStatus(false)} rootClass="mx-1 bg-neutral-950 text-secondry">No</Button>
                 </>
               }
               {deletText && !changeStatus &&
               <>                
                 <Button onClick={deleteHandler} rootClass="mx-1">Yes</Button>
-                <Button onClick={()=>setDeletText(false)} rootClass="mx-1 bg-black text-secondry">No</Button>
+                <Button onClick={()=>setDeletText(false)} rootClass="mx-1 bg-neutral-950 text-secondry">No</Button>
                 </>
               }
             </div>
@@ -91,7 +91,11 @@ export async function getServerSideProps(){
   const categories = Array.from(new Set(category).values())
   return {
     props:{
-      textList,
+      textList:textList.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateA.getTime() - dateB.getTime();
+      }),
       categories,
     }
   }

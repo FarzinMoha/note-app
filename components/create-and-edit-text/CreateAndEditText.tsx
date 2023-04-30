@@ -49,7 +49,7 @@ const CreateAndEditText = ({values}:createAndEditProps) => {
       <div className='w-full flex flex-col px-2 justify-evenly items-center'>
         <Text name='text' value={state.text} label='Text' rootClass='w-full sm:w-[80%] sm:max-w-[800px]' onChange={onChangeHandler}/>
         <Button type='submit'>Save</Button>
-        <Button onClick={()=>router.push('/')} rootClass='bg-black text-secondry'>Cancel</Button>
+        <Button onClick={()=>router.push('/')} rootClass='bg-neutral-950 text-secondry'>Cancel</Button>
       </div>
     </form>
   )

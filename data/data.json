@@ -1,16 +1,18 @@
 {
   "texts": [
     {
-      "id": "4c5dbf0c-0f6e-45c2-bb95-e3de86064577",
-      "category": "football",
-      "text": "sadsadfjhgghjgj\nsahgdjashgdhjasd\nsadhasjkdjashdjhasd\nsadasdhashdasd",
-      "status": true
+      "id": "96e83bef-7cb4-4b0d-87d1-153405c67757",
+      "category": "new category",
+      "text": "asdasdaa",
+      "status": false,
+      "date": "2023-04-30T21:37:56.578Z"
     },
     {
-      "id": "261a73c8-fda6-4b44-b334-57ae9bd662de",
-      "category": "new category",
-      "text": "hjgjhgjhgjh",
-      "status": true
+      "id": "573cd7db-7273-4d1d-b69f-194d7ba64344",
+      "category": "",
+      "text": "asdasdasd",
+      "status": false,
+      "date": "2023-04-30T21:39:02.450Z"
     }
   ]
 }

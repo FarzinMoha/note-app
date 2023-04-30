@@ -21,10 +21,11 @@ export type textListResponse = {
   category: string;
   text: string;
   status: boolean;
+  date:string
 };
 export type CreateAndEditText = {
-  state: { id: string; category: string; text: string; status: boolean };
-  setState:React.Dispatch<SetStateAction<{ id: string; category: string; text: string; status: boolean }>>
+  state: { id: string; category: string; text: string; status: boolean , date:string };
+  setState:React.Dispatch<SetStateAction<{ id: string; category: string; text: string; status: boolean, date:string }>>
   submitHandler:React.FormEventHandler<HTMLFormElement>
   onChangeHandler:React.ChangeEventHandler<HTMLInputElement> & React.ChangeEventHandler<HTMLTextAreaElement>
 };
@@ -37,5 +38,6 @@ export type textEditResponse = {
     category: string;
     text: string;
     status: boolean;
+    date:string
   }
 };

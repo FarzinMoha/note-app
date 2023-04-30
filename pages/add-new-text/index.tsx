@@ -6,17 +6,14 @@ import { useRouter } from 'next/router';
 
 
 const AddNewText = () => {
-  const [state , setState] = useState({ id: '', category: '', text: '', status: false })
+  const date = new Date(); 
+const isoString = date.toISOString();
+  const [state , setState] = useState({ id: '', category: '', text: '', status: false,date:isoString })
   const router = useRouter()
-  const today = new Date()
-  const day = today.setUTCMonth
-  console.log(day)
-
   const submitHandler = useCallback(async (e:any)=>{
     e.preventDefault()
     try {
       await addText({...state , id:uuidv4()})
-      console.log({...state , id:uuidv4()})
       router.push('/')
     } catch (error) {
       console.log(error)

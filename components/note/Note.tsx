@@ -1,11 +1,11 @@
 import pallet from "@/pallet/pallet";
-import React, { SetStateAction, useCallback, useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {MdModeEditOutline} from 'react-icons/md'
 import {FaRegTrashAlt} from 'react-icons/fa'
 import Link from "next/link";
 import { textListResponse } from "@/type/type";
-import { editText } from "@/pages/api";
-import { useRouter } from "next/router";
+import { formatDate } from "@/utils/getData";
+
 
 type notProps = {
   note:textListResponse
@@ -15,35 +15,24 @@ type notProps = {
 }
 
 const Note = ({note , setChangeStatus,setState,setDeletText}:notProps) => {
-  const {category,text,status,id} = note
-    const [editHover , setEditHover] = useState(false)
-    const [trashHover , setTrashHover] = useState(false)
-    const [showText , setShowText] = useState(false)
-
-    const submitHandler = useCallback(async () => {
-      // try {
-      //   await statusHandler(id,note)
-      //   setChangeStatus(false)
-      //   } catch (error) {
-      //     console.log(error)
-      //   }
-    },[showText])
-
-
-
+  const {category,text,status,id,date} = note
+  const formattedDate = formatDate(date);
+  const [editHover , setEditHover] = useState(false)
+  const [trashHover , setTrashHover] = useState(false)
+  const [showText , setShowText] = useState(false)
 
   return (
-    <div className={`w-full h-[85px] duration-200  ${showText && 'h-[336px]'}  relative rounded-md bg-primary hover:bg-primary2 text-white my-7`}>
+    <div className={`w-full h-[85px] duration-200  ${showText && 'h-[335px]'}  relative rounded-md bg-primary hover:bg-primary2 text-white my-7`}>
       <span className="absolute -top-6 left-3 text-white font-bold text-4xl z-10">
         {category}
       </span>
         <span className="absolute -bottom-[0px] right-[5px] text-white text-[11px] select-none tracking-wide z-10">
-        Feb 28 2022
+        {formattedDate}
       </span>
       <div className="w-[calc(70% + 2rem)] h-full duration-200  flex justify-start items-center">
-        <form onSubmit={submitHandler} className="w-[3rem] h-full flex justify-center items-center">
+        <div className="w-[3rem] h-full flex justify-center items-center">
             <input className="w-[20px] h-[20px] cursor-pointer accent-secondry" type="checkbox" checked={status} onChange={()=>{setChangeStatus(true);setState(note)}}/>
-        </form>
+        </div>
         <div onClick={()=>setShowText(!showText)} className={`w-[80%] relative flex justify-start items-start h-full overflow-scroll  cursor-pointer px-2 pr-10 ${showText && 'pb-[25px]'}`}>
       <p className={`w-full leading-7 pt-[26px] tracking-wide ${!showText && 'text-ellipsis overflow-hidden whitespace-nowrap ' }`}>{text}</p>
         </div>
