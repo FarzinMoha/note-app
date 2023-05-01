@@ -22,7 +22,7 @@ const Note = ({note , setChangeStatus,setState,setDeletText}:notProps) => {
   const [showText , setShowText] = useState(false)
 
   return (
-    <div className={`w-full h-[85px] duration-200  ${showText && 'h-[255px]'}  relative rounded-md bg-primary hover:bg-primary2 text-white my-7`}>
+    <div className={`w-full duration-200  ${!showText && 'h-[85px]'}  relative rounded-md bg-primary hover:bg-primary2 text-white my-7`}>
       <span className="absolute -top-6 left-3 text-white font-bold text-xl md:text-4xl  z-10">
         {category}
       </span>
